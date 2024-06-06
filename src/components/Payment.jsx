@@ -1,84 +1,71 @@
-// src/Payment.js
 import React, { useState } from 'react';
 
 const Payment = () => {
-  const [name, setName] = useState('');
   const [cardNumber, setCardNumber] = useState('');
   const [expiryDate, setExpiryDate] = useState('');
   const [cvv, setCvv] = useState('');
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleCardNumberChange = (e) => setCardNumber(e.target.value);
+  const handleExpiryDateChange = (e) => setExpiryDate(e.target.value);
+  const handleCvvChange = (e) => setCvv(e.target.value);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle payment processing here
-    alert('Payment Successful');
+    setSubmitted(true);
+    // Here you can add logic to process the payment
+    console.log('Card Number:', cardNumber);
+    console.log('Expiry Date:', expiryDate);
+    console.log('CVV:', cvv);
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-6 text-center">Payment</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label className="block text-gray-700 mb-2" htmlFor="name">
-              Name on Card
-            </label>
-            <input 
-              type="text" 
-              id="name" 
-              className="w-full border-2 border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" 
-              placeholder="John Doe"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-gray-700 mb-2" htmlFor="cardNumber">
-              Card Number
-            </label>
-            <input 
-              type="text" 
-              id="cardNumber" 
-              className="w-full border-2 border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" 
-              placeholder="1234 5678 9012 3456"
-              value={cardNumber}
-              onChange={(e) => setCardNumber(e.target.value)}
-            />
-          </div>
-          <div className="mb-4 grid grid-cols-2 gap-4">
-            <div>
-              <label className="block text-gray-700 mb-2" htmlFor="expiryDate">
-                Expiry Date
-              </label>
-              <input 
-                type="text" 
-                id="expiryDate" 
-                className="w-full border-2 border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" 
-                placeholder="MM/YY"
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
+        <h1 className="text-2xl font-bold mb-6 text-center">Payment Page</h1>
+        <p className="mb-6 text-center">Proceed with your payment here.</p>
+        {submitted ? (
+          <p className="text-green-600 text-center">Payment submitted successfully!</p>
+        ) : (
+          <form onSubmit={handleSubmit}>
+            <div className="mb-4">
+              <label className="block text-gray-700 mb-2">Card Number:</label>
+              <input
+                type="text"
+                className="w-full p-2 border border-gray-300 rounded"
+                value={cardNumber}
+                onChange={handleCardNumberChange}
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 mb-2">Expiry Date:</label>
+              <input
+                type="text"
+                className="w-full p-2 border border-gray-300 rounded"
                 value={expiryDate}
-                onChange={(e) => setExpiryDate(e.target.value)}
+                onChange={handleExpiryDateChange}
+                required
               />
             </div>
-            <div>
-              <label className="block text-gray-700 mb-2" htmlFor="cvv">
-                CVV
-              </label>
-              <input 
-                type="text" 
-                id="cvv" 
-                className="w-full border-2 border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" 
-                placeholder="123"
+            <div className="mb-6">
+              <label className="block text-gray-700 mb-2">CVV:</label>
+              <input
+                type="text"
+                className="w-full p-2 border border-gray-300 rounded"
                 value={cvv}
-                onChange={(e) => setCvv(e.target.value)}
+                onChange={handleCvvChange}
+                required
               />
             </div>
-          </div>
-          <button 
-            type="submit" 
-            className="w-full bg-blue-500 text-white font-semibold py-2 rounded-lg hover:bg-blue-600 transition duration-200"
-          >
-            Pay Now
-          </button>
-        </form>
+            <button
+              type="submit"
+              className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+            >
+              Submit Payment
+            </button>
+          </form>
+        )}
       </div>
     </div>
   );

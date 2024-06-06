@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   const courses = [
@@ -19,9 +20,12 @@ const Home = () => {
             <div className="p-4">
               <h2 className="text-xl font-bold mb-2">{course.title}</h2>
               <p className="text-gray-700 mb-4">{course.description}</p>
-              <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-200">
-                Enroll Now
-              </button>
+              {/* Use the Link component */}
+              <Link to="/payment">
+                <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-200">
+                  Enroll Now
+                </button>
+              </Link>
             </div>
           </div>
         ))}
