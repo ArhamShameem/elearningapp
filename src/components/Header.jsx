@@ -21,7 +21,7 @@ const Header = () => {
         </div>
 
         <nav className="flex space-x-4">
-          <a href="#" className="text-black font-semibold hover:text-blue-500">
+          <a href="/" className="text-black font-semibold hover:text-blue-500">
             Home
           </a>
           <Link to="/about">
@@ -33,6 +33,11 @@ const Header = () => {
           <Link to="/contact">
           <a href="#" className="text-black font-semibold hover:text-blue-500">
             Contact
+          </a>
+          </Link>
+          <Link to="/login">
+          <a href="#" className="text-black font-semibold hover:text-blue-500">
+            Login
           </a>
           </Link>
         </nav>

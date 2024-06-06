@@ -5,6 +5,7 @@ import Home from './components/Home';
 import Payment from './components/Payment';
 import About from './components/About';
 import Contact from './components/Contact';
+import Login from './components/Login'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/payment" element={<Payment />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
       <p className="read-the-docs">Learning Website</p>
     </Router>
